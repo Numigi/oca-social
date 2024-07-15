@@ -1,6 +1,6 @@
-==========================================================
-Customizable unsubscription process on mass mailing emails
-==========================================================
+====================================
+Mass mailing unsubscription metadata
+====================================
 
 .. 
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -28,42 +28,14 @@ Customizable unsubscription process on mass mailing emails
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This addon extends the unsubscription form to let you:
-
--  Choose which mailing lists are not cross-unsubscriptable when
-   unsubscribing from a different one.
--  Know why and when a contact has been subscribed or unsubscribed from
-   a mass mailing.
--  Provide proof on why you are sending mass mailings to a given
-   contact, as required by the GDPR in Europe.
--  Handle discrete unsubscriptions from other recipients that are not a
-   mailing list. On standard module, unsubscriptions from these
-   recipients directly include that mail on the general blacklist.
+This addon extends the Odoo subscription engine to provide proof on why
+you are sending mass mailings to a given contact, as required by the
+GDPR in Europe.
 
 **Table of contents**
 
 .. contents::
    :local:
-
-Configuration
-=============
-
-You can customize what reasons will be displayed to your unsubscriptors
-when they are going to unsubscribe. To do it:
-
-1. Go to *Email Marketing > Configuration > Unsubscription Reasons*.
-2. Create / edit / remove / sort as usual.
-3. If *Details required* is enabled, they will have to fill a text area
-   to continue.
-
-For having discrete unsubscriptions from other recipients than the
-mailing lists, you need to add a glue module that adds 2 fields in the
-associated model:
-
--  opt_out.
--  Either email or email_from.
-
-See mass_mailing_custom_unsubscribe_event for an example.
 
 Usage
 =====
@@ -76,15 +48,6 @@ Once configured:
 3. Send it.
 4. If somebody gets unsubscribed, you will see logs about that under
    *Email Marketing > Unsubscriptions*.
-
-Known issues / Roadmap
-======================
-
--  This module replaces AJAX submission core implementation from the
-   mailing list management form, because it is impossible to extend it.
-   When this is fixed, this addon will need a refactoring (mostly
-   removing duplicated functionality and depending on it instead of
-   replacing it).
 
 Bug Tracker
 ===========
