@@ -5,7 +5,7 @@
     "name": "Mail Activity Team",
     "summary": "Add Teams to Activities",
     "version": "16.0.1.0.1",
-    "development_status": "Alpha",
+    "development_status": "Beta",
     "category": "Social Network",
     "website": "https://github.com/OCA/social",
     "author": "ForgeFlow, Sodexis, Odoo Community Association (OCA)",
