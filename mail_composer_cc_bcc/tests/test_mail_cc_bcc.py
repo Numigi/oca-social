@@ -103,16 +103,16 @@ class TestMailCcBcc(TestMailComposer):
         # Company default values
         env.company.default_partner_cc_ids = self.partner_cc3
         env.company.default_partner_bcc_ids = self.partner_cc2
-        # Product template values
-        tmpl_model = env["ir.model"].search([("model", "=", "product.template")])
+        # Res Partner values
+        res_partner_model = env["ir.model"].search([("model", "=", "res.partner")])
         partner_cc = self.partner_cc
         partner_bcc = self.partner_bcc
         vals = {
-            "name": "Product Template: Re: [E-COM11] Cabinet with Doors",
-            "model_id": tmpl_model.id,
-            "subject": "Re: [E-COM11] Cabinet with Doors",
+            "name": "Contact: New Contact",
+            "model_id": res_partner_model.id,
+            "subject": "Re: New Contact",
             "body_html": """<p style="margin:0px 0 12px 0;box-sizing:border-box;">
-Test Template<br></p>""",
+        New Contact<br></p>""",
             "email_cc": tools.formataddr(
                 (partner_cc.name or "False", partner_cc.email or "False")
             ),
@@ -120,18 +120,18 @@ Test Template<br></p>""",
                 (partner_bcc.name or "False", partner_bcc.email or "False")
             ),
         }
-        prod_tmpl = env["mail.template"].create(vals)
+        mail_tmpl = env["mail.template"].create(vals)
         # Open mail composer form and check for default values from company
         form = self.open_mail_composer_form()
         composer = form.save()
         self.assertEqual(composer.partner_cc_ids, self.partner_cc3)
         self.assertEqual(composer.partner_bcc_ids, self.partner_cc2)
         # Change email template and check for values from it
-        form.template_id = prod_tmpl
+        form.template_id = mail_tmpl
         composer = form.save()
         # Beside existing Cc and Bcc, add template's ones
         form = Form(composer)
-        form.template_id = prod_tmpl
+        form.template_id = mail_tmpl
         composer = form.save()
         expecting = self.partner_cc3 + self.partner_cc
         self.assertEqual(composer.partner_cc_ids, expecting)
@@ -146,7 +146,7 @@ Test Template<br></p>""",
         form.template_id = env["mail.template"]
         form.save()
         self.assertFalse(form.template_id)
-        form.template_id = prod_tmpl
+        form.template_id = mail_tmpl
         composer = form.save()
         expecting = self.partner_cc3 + self.partner_cc
         self.assertEqual(composer.partner_cc_ids, expecting)
