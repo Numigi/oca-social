@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,12 +19,6 @@ msgid "Attachment name pattern (regex)"
 msgstr ""
 
 #. module: mail_template_attach_existing_attachment
-#: model:ir.model.fields,field_description:mail_template_attach_existing_attachment.field_mail_compose_message__display_name
-#: model:ir.model.fields,field_description:mail_template_attach_existing_attachment.field_mail_template__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: mail_template_attach_existing_attachment
 #: model:ir.model,name:mail_template_attach_existing_attachment.model_mail_template
 msgid "Email Templates"
 msgstr ""
@@ -35,18 +29,6 @@ msgid "Email composition wizard"
 msgstr ""
 
 #. module: mail_template_attach_existing_attachment
-#: model:ir.model.fields,field_description:mail_template_attach_existing_attachment.field_mail_compose_message__id
-#: model:ir.model.fields,field_description:mail_template_attach_existing_attachment.field_mail_template__id
-msgid "ID"
-msgstr ""
-
-#. module: mail_template_attach_existing_attachment
-#: model:ir.model.fields,field_description:mail_template_attach_existing_attachment.field_mail_compose_message____last_update
-#: model:ir.model.fields,field_description:mail_template_attach_existing_attachment.field_mail_template____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: mail_template_attach_existing_attachment
 #: model:ir.model.fields,help:mail_template_attach_existing_attachment.field_mail_template__attach_exist_document_regex
 msgid ""
 "REGular EXpression to find existing document (base on file name) to attach "
@@ -54,7 +36,7 @@ msgid ""
 msgstr ""
 
 #. module: mail_template_attach_existing_attachment
-#: code:addons/.src/social/mail_template_attach_existing_attachment/models/mail_template.py:0
+#. odoo-python
 #: code:addons/mail_template_attach_existing_attachment/models/mail_template.py:0
 #, python-format
 msgid "The following regular expression is invalid to select attachment: %s"
