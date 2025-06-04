@@ -1,26 +1,35 @@
-/* Copyright 2014-2015 Grupo ESOC <http://www.grupoesoc.es>
- * License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
- */
-odoo.define(
-    "mail_full_expand/static/src/components/message/mail_full_expand.js",
-    function (require) {
-        "use strict";
+/** @odoo-module */
 
-        const components = {
-            Message: require("mail/static/src/components/message/message.js"),
-        };
-        const {patch} = require("web.utils");
+import { Component, onMounted } from "@odoo/owl";
+import { useService } from "@web/core/utils/hooks";
+import { registry } from "@web/core/registry";
 
-        patch(components.Message, "mail_full_expand.main", {
-            async _onClickMessageFullExpand(ev) {
-                ev.stopPropagation();
-                const action = await this.rpc({
-                    route: "/web/action/load",
-                    params: {action_id: "mail_full_expand.mail_message_action"},
-                });
-                action.res_id = this.message.id;
-                this.env.bus.trigger("do-action", {action: action});
-            },
-        });
+export class UrlAttachmentList extends Component {
+    setup() {
+        this.orm = useService("orm");
+        this.model = this.props.model;
+        this.resId = this.props.resId;
+
+        onMounted(() => this.loadAttachments());
     }
-);
+
+    async loadAttachments() {
+        if (!this.resId || typeof this.resId === "string" && this.resId.startsWith("virtual_")) {
+            return;
+        }
+
+        const attachments = await this.orm.searchRead("ir.attachment", [
+            ["res_model", "=", this.model],
+            ["res_id", "=", this.resId],
+            ["type", "=", "url"],
+        ], ["name", "url", "create_date"]);
+
+        this.attachments = attachments.map(att => ({
+            ...att,
+            formatted_date: att.create_date ? (new Date(att.create_date)).toLocaleDateString() : '',
+        }));
+
+        this.render();  
+    }
+}
+UrlAttachmentList.template = "document_url_chatter_list.UrlAttachmentList";
