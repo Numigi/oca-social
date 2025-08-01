@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="mail.Message" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_Message_core')]/t/div[hasclass('o_Message_header')]" position="inside">
+            <span class="o_Message_threadFullSpandIcon">
+                <i
+                    class="fa o_Message_fullExpand fa-arrows-alt"
+                    t-att-data-message-id="messageView.message.id"
+                    t-on-click="_onClickMessageFullExpand"
+                    title="Fully Expand"
+                />
+            </span>
+        </xpath>
+    </t>
+</templates>
